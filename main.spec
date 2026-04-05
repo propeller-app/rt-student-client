@@ -1,7 +1,9 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all, collect_submodules
 
-datas = []
+datas = [
+    ('.env', '.'),  # Include .env file in the package
+]
 binaries = []
 hiddenimports = [
     'selenium',
@@ -45,6 +47,7 @@ exe = EXE(
     pyz,
     a.scripts,
     a.binaries,
+    a.zipfiles,
     a.datas,
     [],
     name='ChromeKiosk',
