@@ -1,0 +1,4 @@
+selenium>=4.41.0
+auto-py-to-exe>=2.50.0
+python-dotenv>=1.2.2
+pynput>=1.8.1
