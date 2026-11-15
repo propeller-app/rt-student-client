@@ -45,7 +45,7 @@ python main.py
 The script will:
 
 1. Detect Chrome or download it if not present
-2. Launch Chrome in kiosk mode pointing to: `https://rt.redhillaviation.co.uk/?config=jsd`
+2. Launch Chrome in kiosk mode pointing to website in .env TARGET_URL
 3. Run in fullscreen with device permissions auto-granted
 4. Keep running until you press **Ctrl+C** to exit
 
@@ -71,14 +71,18 @@ auto-py-to-exe
 #### Alternative: Command-line approach
 
 ```bash
-pyinstaller --onefile --windowed main.py
+python -m PyInstaller --onefile --noconsole --collect-all selenium `
+  --hidden-import pynput.keyboard._win32 `
+  --hidden-import pynput.mouse._win32 `
+  --add-data ".env;." `
+  main.py
 ```
 
 This creates `dist/main.exe` that can be distributed and run independently.
 
 ## Configuration
 
-To change the target URL, edit `main.py` and modify the `TARGET_URL` variable:
+To change the target URL, edit `.env` and modify the `TARGET_URL` variable:
 
 ```python
 TARGET_URL = "https://your-desired-url.com"

@@ -1,30 +1,10 @@
 # -*- mode: python ; coding: utf-8 -*-
-from PyInstaller.utils.hooks import collect_all, collect_submodules
+from PyInstaller.utils.hooks import collect_all
 
-datas = [
-    ('.env', '.'),  # Include .env file in the package
-]
+datas = [('.env', '.')]
 binaries = []
-hiddenimports = [
-    'selenium',
-    'selenium.webdriver',
-    'selenium.webdriver.chrome',
-    'selenium.webdriver.chrome.service',
-    'selenium.webdriver.chrome.options',
-    'selenium.webdriver.remote',
-    'selenium.webdriver.common',
-    'selenium.webdriver.common.by',
-    'pynput',
-    'pynput.keyboard',
-    'pynput.keyboard._win32',
-    'pynput.mouse',
-    'dotenv',
-] + collect_submodules('selenium') + collect_submodules('pynput')
-
+hiddenimports = ['pynput.keyboard._win32', 'pynput.mouse._win32']
 tmp_ret = collect_all('selenium')
-datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
-
-tmp_ret = collect_all('pynput')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
 
@@ -47,17 +27,16 @@ exe = EXE(
     pyz,
     a.scripts,
     a.binaries,
-    a.zipfiles,
     a.datas,
     [],
-    name='ChromeKiosk',
+    name='main',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=True,
+    console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,

@@ -7,7 +7,6 @@ Launches Chrome in kiosk mode pointing to a specific URL with device permissions
 import os
 import sys
 import logging
-import threading
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
