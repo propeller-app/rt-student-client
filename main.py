@@ -11,8 +11,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
 from pynput import keyboard
+from pathlib import Path
 
-load_dotenv()
+base = Path(getattr(sys, "_MEIPASS", Path(__file__).parent))
+load_dotenv(base / ".env")
 
 TARGET_URL = os.getenv("TARGET_URL")
 
